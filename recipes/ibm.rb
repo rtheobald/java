@@ -50,7 +50,7 @@ remote_file "#{Chef::Config[:file_cache_path]}/#{jdk_filename}" do
   notifies :run, "execute[install-ibm-java]", :immediately
 end
 
-java_alternatives 'set-java-alternatives' do
+java_ibm_alternatives 'set-java-alternatives' do
   java_location node['java']['java_home']
   default node['java']['set_default']
   case node['java']['jdk_version'].to_s
