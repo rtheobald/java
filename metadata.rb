@@ -1,4 +1,4 @@
-name              "java"
+name              "java_ibm"
 maintainer        "Agile Orbit"
 maintainer_email  "info@agileorbit.com"
 license           "Apache 2.0"
