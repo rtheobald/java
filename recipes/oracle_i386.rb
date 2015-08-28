@@ -22,7 +22,7 @@ unless node.recipe?('java::default')
 
 # Even if this recipe is included by itself, a safety check is nice...
   if node['java']['java_home'].nil? or node['java']['java_home'].empty?
-    include_recipe "java::set_attributes_from_version"
+    include_recipe "java_ibm::set_attributes_from_version"
   end
 end
 
@@ -43,7 +43,7 @@ when "8"
   bin_cmds = node['java']['jdk']['8']['bin_cmds']
 end
 
-include_recipe "java::set_java_home"
+include_recipe "java_ibm::set_java_home"
 
 yum_package "glibc" do
   arch "i686"

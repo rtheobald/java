@@ -187,7 +187,7 @@ action :install do
     converge_by(description) do
       Chef::Log.debug "Adding #{jinfo_file} for debian"
       template jinfo_file do
-        cookbook "java"
+        cookbook "java_ibm"
         source "oracle.jinfo.erb"
         owner new_resource.owner
         group app_group

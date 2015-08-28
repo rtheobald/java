@@ -18,5 +18,5 @@
 # limitations under the License.
 #
 
-include_recipe "java::set_attributes_from_version"
-include_recipe "java::#{node['java']['install_flavor']}"
+include_recipe "java_ibm::set_attributes_from_version"
+include_recipe "java_ibm::#{node['java']['install_flavor']}"

@@ -25,7 +25,7 @@ unless node.recipe?('java::default')
   # Even if this recipe is included by itself, a safety check is nice...
   [ node['java']['openjdk_packages'], node['java']['java_home'] ].each do |v|
     if v.nil? or v.empty?
-      include_recipe "java::set_attributes_from_version"
+      include_recipe "java_ibm::set_attributes_from_version"
     end
   end
 end

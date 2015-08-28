@@ -22,7 +22,7 @@ unless node.recipe?('java::default')
 
 # Even if this recipe is included by itself, a safety check is nice...
   if node['java']['java_home'].nil? or node['java']['java_home'].empty?
-    include_recipe "java::set_attributes_from_version"
+    include_recipe "java_ibm::set_attributes_from_version"
   end
 end
 
@@ -48,7 +48,7 @@ if tarball_url =~ /example.com/
   Chef::Application.fatal!("You must change the download link to your private repository. You can no longer download java directly from http://download.oracle.com without a web broswer")
 end
 
-include_recipe "java::set_java_home"
+include_recipe "java_ibm::set_java_home"
 
 package "tar"
 

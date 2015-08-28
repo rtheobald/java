@@ -67,4 +67,4 @@ execute "untar-ibm-java" do
   creates "#{node['java']['java_home']}/jre/bin/java"
 end
 
-include_recipe "java::set_java_home"
+include_recipe "java_ibm::set_java_home"
