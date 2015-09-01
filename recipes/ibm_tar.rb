@@ -63,7 +63,7 @@ end
 execute "untar-ibm-java" do
   cwd Chef::Config[:file_cache_path]
   command "tar xzf ./#{jdk_filename} -C #{node['java']['java_home']} --strip 1"
-  notifies :set, 'java_alternatives[set-java-alternatives]', :immediately
+  notifies :set, 'java_ibm_alternatives[set-java-alternatives]', :immediately
   creates "#{node['java']['java_home']}/jre/bin/java"
 end
 

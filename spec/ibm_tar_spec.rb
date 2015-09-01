@@ -25,7 +25,7 @@ describe 'java::ibm_tar' do
     )
 
     untar_command = chef_run.execute('untar-ibm-java')
-    expect(untar_command).to notify('java_alternatives[set-java-alternatives]')
+    expect(untar_command).to notify('java_ibm_alternatives[set-java-alternatives]')
   end
 
   it 'includes the set_java_home recipe' do
