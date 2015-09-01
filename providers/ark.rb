@@ -217,7 +217,7 @@ action :install do
   end
 
   #update-alternatives
-  java_alternatives 'set-java-alternatives' do
+  java_ibm_alternatives 'set-java-alternatives' do
     java_location app_home
     bin_cmds new_resource.bin_cmds
     priority new_resource.alternatives_priority
@@ -241,7 +241,7 @@ action :remove do
   end
 
   if ::File.exists?(app_dir)
-    java_alternatives 'unset-java-alternatives' do
+    java_ibm_alternatives 'unset-java-alternatives' do
       java_location app_home
       bin_cmds new_resource.bin_cmds
       action :unset

@@ -48,7 +48,7 @@ directory "create-java-home" do
   recursive true
 end
 
-java_alternatives 'set-java-alternatives' do
+java_ibm_alternatives 'set-java-alternatives' do
   java_location node['java']['java_home']
   default node['java']['set_default']
   case node['java']['jdk_version'].to_s
