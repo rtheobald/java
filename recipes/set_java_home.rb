@@ -23,12 +23,20 @@ ruby_block  "set-env-java-home" do
   not_if { ENV["JAVA_HOME"] == node['java']['java_home'] }
 end
 
+ruby_block  "set-env-path-java-bin" do
+  block do
+    ENV["PATH"] = "#{ENV["PATH"]}:#{node['java']['java_home']}/jre/bin"
+  end
+  not_if { ENV["PATH"] == "#{ENV["PATH"]}:#{node['java']['java_home']}/jre/bin" }
+end
+
 directory "/etc/profile.d" do
   mode 00755
 end
 
 file "/etc/profile.d/jdk.sh" do
   content "export JAVA_HOME=#{node['java']['java_home']}"
+  content "export PATH=$PATH:#{node['java']['java_home']}/jre/bin"
   mode 00755
 end
 
