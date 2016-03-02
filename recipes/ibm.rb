@@ -58,7 +58,10 @@ java_alternatives 'set-java-alternatives' do
     bin_cmds node['java']['ibm']['6']['bin_cmds']
   when '7'
     bin_cmds node['java']['ibm']['7']['bin_cmds']
+  when '8'
+    bin_cmds node['java']['ibm']['8']['bin_cmds']
   end
+  priority 1081
   action :nothing
 end
 
@@ -68,6 +71,7 @@ execute 'install-ibm-java' do
               'LAX_DEBUG' => '1')
   command "./#{jdk_filename} -f ./installer.properties -i silent"
   notifies :set, 'java_alternatives[set-java-alternatives]', :immediately
+  
   creates "#{node['java']['java_home']}/jre/bin/java"
 end
 

@@ -61,6 +61,11 @@ when 'ibm', 'ibm_tar'
                                                schemagen serialver tnameserv wsgen wsimport xjc)
 
   default['java']['ibm']['7']['bin_cmds'] = node['java']['ibm']['6']['bin_cmds'] + %w(pack200 unpack200)
+
+  default['java']['ibm']['8']['bin_cmds'] = %w(appletviewer ControlPanel extcheck idlj jar jarsigner java javac javadoc
+                                               javah javap java-rmi.cgi javaw javaws jconsole jcontrol jdb jdeps jdmpview 
+                                               jjs jrunscript keytool native2ascii pack200 policytool rmic rmid rmiregistry 
+                                               schemagen serialver tnameserv unpack200 wsgen wsimport xjc)
 when 'oracle_rpm'
   # type of java RPM : jdk or jre
   default['java']['oracle_rpm']['type'] = 'jdk'
