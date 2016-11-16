@@ -1,9 +1,5 @@
----
 driver:
   name: vagrant
-  require_chef_omnibus: true
-  customize:
-    memory: 1024
 
 provisioner:
   name: chef_zero
@@ -13,13 +9,16 @@ provisioner:
       ark_retry_delay: 10
 
 platforms:
+  - name: ubuntu-16.04
+    run_list:
+    - recipe[apt]
+    driver:
+      box: boxcutter/ubuntu1604
   - name: ubuntu-14.04
     run_list:
     - recipe[apt]
     driver:
       box: box-cutter/ubuntu1404
-    run_list:
-    - recipe[apt]
   - name: ubuntu-12.04
     driver:
       box: box-cutter/ubuntu1204
@@ -47,10 +46,14 @@ platforms:
   - name: fedora-22
     driver:
       box: box-cutter/fedora22
-  - name: fedora-21
+  - name: fedora-23
     driver:
       box: box-cutter/fedora21
-
+  - name: freebsd-10.2
+    driver:
+      box: box-cutter/freebsd102
+    run_list:
+    - recipe[freebsd_bash]
 suites:
   - name: openjdk-6
     includes:
@@ -62,6 +65,7 @@ suites:
       - ubuntu-14.04
     run_list:
       - recipe[java::default]
+      - recipe[test_java::java_cert]
   - name: openjdk-7
     includes:
       - centos-5.11
@@ -71,20 +75,26 @@ suites:
       - debian-8.2
       - ubuntu-12.04
       - ubuntu-14.04
+      - ubuntu-16.04
+      - freebsd-10.2
     run_list:
       - recipe[java::default]
+      - recipe[test_java::java_cert]
     attributes:
       java:
         jdk_version: "7"
   - name: openjdk-8
     includes:
+      - ubuntu-12.04
       - ubuntu-14.04
+      - ubuntu-16.04
       - centos-6.7
       - centos-7.1
-      - fedora-21
       - fedora-22
+      - fedora-23
     run_list:
       - recipe[java::default]
+      - recipe[test_java::java_cert]
     attributes:
       java:
         jdk_version: "8"
@@ -92,6 +102,7 @@ suites:
     run_list:
       - recipe[test_java::default]
       - recipe[java::default]
+      - recipe[test_java::java_cert]
     attributes:
       java:
         oracle:
@@ -103,6 +114,7 @@ suites:
     run_list:
       - recipe[test_java::default]
       - recipe[java::default]
+      - recipe[test_java::java_cert]
     attributes:
       java:
         jdk_version: "7"
@@ -115,6 +127,7 @@ suites:
     run_list:
       - recipe[test_java::default]
       - recipe[java::default]
+      - recipe[test_java::java_cert]
     attributes:
       java:
         jdk_version: "8"
@@ -138,7 +151,7 @@ suites:
       - centos-5.11
       - centos-6.7
       - centos-7.1
-      - fedora-21
+      - fedora-22
     run_list:
       - recipe[java::default]
     attributes:
@@ -152,7 +165,7 @@ suites:
       - centos-5.11
       - centos-6.7
       - centos-7.1
-      - fedora-21
+      - fedora-22
     run_list:
       - recipe[java::default]
     attributes:
